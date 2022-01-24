@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:RESTfulAPI"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Api regist">
+      Title="Api regist" FontSize="14" FontFamily="Microsoft YaHei UI">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -14,62 +14,52 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid Background="#FFFDFDFD">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="50" x:Name="Row_name"/>
+            <RowDefinition Height="50" x:Name="Row_user"/>
+            <RowDefinition Height="50" x:Name="Row_pwd"/>
+            <RowDefinition Height="50" x:Name="Row_confirm"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="150*"/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="350*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Bottom">
-            <Label Content="API Url" Margin="5" Padding="5"></Label>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <Label Content="User name" />
         </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Bottom">
-            <Label x:Name="Lb_url" Content="/regist" Margin="5" Padding="5" HorizontalAlignment="Left"></Label>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <TextBox x:Name="Tb_username" Margin="11,11,11,0" Padding="3" GotFocus="When_On_focus"></TextBox>
+            <TextBlock x:Name="name_error" Margin="20,0,0,0" Foreground="Red"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0">
-            <Label Content="Server host" Margin="5" Padding="5"></Label>
+            <Label Content="User account" />
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBox x:Name="Tb_host" Margin="5" Padding="5" LostFocus="Hots_LostFocus"></TextBox>
+            <TextBox x:Name="Tb_account" Margin="11,11,11,0" Padding="3" GotFocus="When_On_focus"></TextBox>
+            <TextBlock x:Name="user_error" Margin="20,0,0,0" Foreground="Red"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="0">
-            <Label Content="User name" Margin="5" Padding="5"></Label>
+            <Label Content="User password" />
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1">
-            <TextBox x:Name="Tb_username" Margin="5" Padding="5"></TextBox>
+            <PasswordBox x:Name="Pb_pwd" Margin="11,11,11,0" Padding="3" GotFocus="When_On_focus"></PasswordBox>
+            <TextBlock x:Name="pwd_error" Margin="20,0,0,0" Foreground="Red"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="0">
-            <Label Content="User account" Margin="5" Padding="5"></Label>
+            <Label Content="Confirm password" />
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1">
-            <TextBox x:Name="Tb_account" Margin="5" Padding="5"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="4" Grid.Column="0">
-            <Label Content="User password" Margin="5" Padding="5"></Label>
+            <PasswordBox x:Name="Pb_confirmpwd" Margin="11,11,11,0" Padding="3" GotFocus="When_On_focus"></PasswordBox>
+            <TextBlock x:Name="confirm_error" Margin="20,0,0,0" Foreground="Red"/>
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.Column="1">
-            <PasswordBox x:Name="Pb_pwd" Margin="5" Padding="5"></PasswordBox>
+            <Button Content="Regist" HorizontalAlignment="Right" Click="Send_regist"></Button>
         </StackPanel>
-        <StackPanel Grid.Row="5" Grid.Column="0">
-            <Label Content="Confirm password" Margin="5" Padding="5"></Label>
-        </StackPanel>
-        <StackPanel Grid.Row="5" Grid.Column="1">
-            <PasswordBox x:Name="Pb_confirmpwd" Margin="5" Padding="5"></PasswordBox>
-        </StackPanel>
-        <StackPanel Grid.Row="6" Grid.Column="1" Margin="5">
-            <Button Content="Regist" HorizontalAlignment="Right"></Button>
-        </StackPanel>
-        <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">
-            <TextBox x:Name="Tb_message" Padding="10" MaxHeight="150" Height="100" IsEnabled="False"/>
+        <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" >
+            <TextBox x:Name="Tb_message" Height="150" Focusable="True" VerticalScrollBarVisibility="Auto"/>
         </StackPanel>
     </Grid>
 </Page>

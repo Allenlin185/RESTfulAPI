@@ -19,16 +19,15 @@
             <RowDefinition Height="75"/>
             <RowDefinition x:Name="Row_host" Height="50"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="500"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="75*"/>
+            <RowDefinition Height="400"/>
+            <RowDefinition Height="35*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="75"/>
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="130"/>
-            <ColumnDefinition Width="380"/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="350"/>
             <ColumnDefinition Width="75"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0">
@@ -40,46 +39,55 @@
         <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="3">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
                     <RowDefinition Height="70"/>
                     <RowDefinition Height="70"/>
                     <RowDefinition Height="70"/>
                     <RowDefinition Height="70"/>
                     <RowDefinition Height="70"/>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0">
-                    <Button x:Name="Bt_register" Margin="10" Click="show_regist_page" >
+                <StackPanel Grid.Row="0" Grid.Column="1">
+                    <Label Name="loginuser" Foreground="Red" HorizontalAlignment="Left" >
+                        <StackPanel Orientation="Horizontal">
+                            <fa:FontAwesome x:Name="UserIcon" Icon="UserOutline" Margin="5,7" FontSize="14"/>
+                            <Label x:Name="UserName" Content="Not login" Foreground="Red" Margin="0"/>
+                        </StackPanel>
+                    </Label>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <Button x:Name="Bt_register" Click="show_regist_page" >
                         <StackPanel Orientation="Horizontal">
                             <fa:FontAwesome Icon="UserPlus" Margin="5,13" FontSize="18"/>
                             <TextBlock Margin="5,10" Text="Register" />
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                <StackPanel Grid.Row="1">
-                    <Button x:Name="Bt_signin" Margin="10" Click="show_login_page" >
+                <StackPanel Grid.Row="2">
+                    <Button x:Name="Bt_signin" Click="show_login_page" >
                         <StackPanel Orientation="Horizontal">
                             <fa:FontAwesome Icon="SignIn" Width="20" Margin="5,13" FontSize="18"/>
                             <TextBlock Margin="5,10" >Sign in</TextBlock>
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                <StackPanel Grid.Row="2">
-                    <Button x:Name="Bt_result" Margin="10" >
+                <StackPanel Grid.Row="3">
+                    <Button x:Name="Bt_result" Click="show_result_page" >
                         <StackPanel Orientation="Horizontal">
                             <fa:FontAwesome Icon="CheckCircle" Margin="5,13" FontSize="18"/>
                             <TextBlock Margin="5,10" >Get Result</TextBlock>
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                <StackPanel Grid.Row="3">
-                    <Button x:Name="Bt_signout" Margin="10" >
+                <StackPanel Grid.Row="4">
+                    <Button x:Name="Bt_signout" Click="do_logout" >
                         <StackPanel Orientation="Horizontal">
                             <fa:FontAwesome Icon="SignOut" Margin="5,13" FontSize="18"/>
                             <TextBlock Margin="5,10" >Sign Out</TextBlock>
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                <StackPanel Grid.Row="4">
-                    <Button x:Name="exit" Margin="10" Foreground="red" Click="exit_Click" >
+                <StackPanel Grid.Row="5">
+                    <Button x:Name="exit" Foreground="red" Click="exit_Click" >
                         <StackPanel Orientation="Horizontal">
                             <fa:FontAwesome Icon="Stop" Margin="5,13" FontSize="18"/>
                             <TextBlock Margin="5,10" >Exit</TextBlock>
@@ -89,10 +97,10 @@
             </Grid>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="3">
-            <Label Content="Server host" Margin="11"/>
+            <Label Content="Server host"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="4">
-            <TextBox x:Name="Tb_host" Margin="11,11,11,0" Padding="3" LostFocus="Set_host_style"/>
+            <TextBox x:Name="Tb_host" Margin="11,11,11,0" LostFocus="Set_host_style" KeyUp="Check_host_rule"/>
             <TextBlock x:Name="host_error" Margin="20,3,0,0" Foreground="Red"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="3">
@@ -102,13 +110,7 @@
             <TextBlock x:Name="Tbl_url"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="0,0,0,20">
-            <Frame x:Name="Main" NavigationUIVisibility="Hidden" Padding="10"/>
-        </StackPanel>
-        <StackPanel Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,5,10,0">
-            <Label Content="Message"></Label>
-        </StackPanel>
-        <StackPanel Grid.Row="11" Grid.Column="3" Margin="10">
-            <TextBlock x:Name="TB_message"/>
+            <Frame x:Name="Main" NavigationUIVisibility="Hidden" />
         </StackPanel>
     </Grid>
 </Window>

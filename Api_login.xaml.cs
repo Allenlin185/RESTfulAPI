@@ -37,23 +37,27 @@ namespace RESTfulAPI
             if (Tb_user.Text == "")
             {
                 Row_user.Height = new GridLength(70);
-                user_error.Text = "請輸入User account";
+                Tb_user.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                user_error.Text = "Pleace input User account";
                 CanSend = false;
             }
             else
             {
                 Row_user.Height = new GridLength(50);
+                Tb_user.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
                 user_error.Text = "";
             }
             if (Pb_pwd.Password == "")
             {
                 Row_password.Height = new GridLength(70);
-                pwd_error.Text = "請輸入User password";
+                Pb_pwd.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                pwd_error.Text = "Pleace input User password";
                 CanSend = false;
             }
             else
             {
                 Row_password.Height = new GridLength(50);
+                Pb_pwd.BorderBrush = new SolidColorBrush(Color.FromRgb(171, 173, 179));
                 pwd_error.Text = "";
             }
             if (CanSend)
@@ -72,13 +76,42 @@ namespace RESTfulAPI
                     HttpResponseMessage ResponseMessage = Client.PostAsync("api/login", formContent).Result;
                     var responseJson = ResponseMessage.Content.ReadAsStringAsync().Result;
                     var jObject = JObject.Parse(responseJson);
+                    Tb_message.Foreground = new SolidColorBrush(Color.FromRgb(102, 102, 102));
                     Tb_message.Text = jObject.ToString();
+                    if ((bool)jObject["success"])
+                    {
+                        API_host.UserName.Content = jObject["data"]["name"].ToString();
+                        API_host.token = jObject["data"]["token"].ToString();
+                        API_host.UserIcon.Icon = FontAwesome.WPF.FontAwesomeIcon.User;
+                        API_host.loginuser.Foreground = new SolidColorBrush(Color.FromRgb(173, 255, 47));
+                        API_host.UserName.Foreground = new SolidColorBrush(Color.FromRgb(173, 255, 47));
+                    }
+                    else
+                    {
+                        API_host.UserName.Content = "Not login";
+                        API_host.UserIcon.Icon = FontAwesome.WPF.FontAwesomeIcon.UserOutline;
+                        API_host.token = "";
+                        API_host.loginuser.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                        API_host.UserName.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                    }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    Tb_message.Text = ex.Message;
+                    API_host.UserName.Content = "Not login";
+                    API_host.token = "";
+                    API_host.UserIcon.Icon = FontAwesome.WPF.FontAwesomeIcon.UserOutline;
+                    API_host.loginuser.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                    API_host.UserName.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                    Tb_message.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                    Tb_message.Text = "Can't connect Web server.";
                 }
             }
+        }
+
+        private void When_On_focus(object sender, RoutedEventArgs e)
+        {
+            Tb_message.Foreground = new SolidColorBrush(Color.FromRgb(102, 102, 102));
+            Tb_message.Text = "";
         }
     }
 }
