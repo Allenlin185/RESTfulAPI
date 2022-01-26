@@ -107,7 +107,7 @@ namespace RESTfulAPI
                     Tb_message.Text = jObject.ToString();
                     if ((bool)jObject["success"])
                     {
-                        API_host.UserName.Content = jObject["data"]["name"].ToString();
+                        API_host.UserName.Content = "Hi " + jObject["data"]["name"].ToString();
                         API_host.token = jObject["data"]["token"].ToString();
                         API_host.UserIcon.Icon = FontAwesome.WPF.FontAwesomeIcon.User;
                         API_host.loginuser.Foreground = new SolidColorBrush(Color.FromRgb(173, 255, 47));
